@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
-import threading
 import random
 
 
@@ -14,7 +13,6 @@ class OrdersManager:
 
     def __init__(self) -> None:
         self.__generate_fake_orders(quantity=1_000)
-
 
     def __generate_fake_orders(self, quantity):
         self.__log(f"Generating fake orders")
@@ -28,12 +26,10 @@ class OrdersManager:
         for id, number in order:
             self.__db[id] = number
             self.__log(
-            message=f"Order [{id}] {number} was successfully prosecuted."
+                message=f"Order [{id}] {number} was successfully prosecuted."
             )
             self.__orders_processed += 1
         time.sleep(random.uniform(0, 1))
-
-
 
     def process_orders(self):
         with ThreadPoolExecutor(max_workers=10) as executor:
