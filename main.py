@@ -50,3 +50,4 @@ if __name__ == '__main__':
     delay = time.time() - start_time
 
     print(f"{datetime.now()} > Tiempo de ejecucion: {delay} segundos...")
+# 496 segundos vs 0,5 segundos my code
